@@ -10,9 +10,13 @@ jobs:
       image: ruby:2.7.0
 
     steps:
-      - uses: actions/checkout@v1
-      - run: ruby main.rb
-      # - run: gem install bundler --no-document
-      # - run: bundle config set deployment 'true'
-      # - run: bundle install --jobs 4 --retry 3
-      # - run: bundle exec rake
+      - uses: actions/checkout@master
+      - name: Build
+        run: |
+          gem install bundler --no-document
+          bundle config set deployment 'true'
+          bundle install --jobs 4 --retry 3
+      - name: lint
+        run: bundle exec rubocop
+      - name: rspec
+        run: bundle exec rspec
