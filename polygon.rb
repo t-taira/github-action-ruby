@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Polygon Class
 class Polygon
   def initialize(number)
